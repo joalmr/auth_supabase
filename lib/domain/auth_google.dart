@@ -19,7 +19,7 @@ class AuthSupabase {
 
     final clientId = dotenv.env['GOOGLECLIENTID']!;
 
-    const applicationId = 'com.joalmr.auth_supabase';
+    const applicationId = 'com.joalmr.supabase';
     const redirectUrl = '$applicationId:/google_auth';
 
     const discoveryUrl =
