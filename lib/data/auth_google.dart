@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:auth_supabase/domain/auth_google_repository.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class AuthSupabase {
+class AuthSupabase implements AuthRepository {
   final supabase = Supabase.instance.client;
 
   String _generateRandomString() {
@@ -13,18 +14,16 @@ class AuthSupabase {
     return base64Url.encode(List<int>.generate(16, (_) => random.nextInt(256)));
   }
 
+  @override
   Future<AuthResponse> signInWithGoogle() async {
     final rawNonce = _generateRandomString();
     final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
 
     final clientId = dotenv.env['GOOGLECLIENTID']!;
-
     const applicationId = 'com.joalmr.supabase';
     const redirectUrl = '$applicationId:/google_auth';
-
     const discoveryUrl =
         'https://accounts.google.com/.well-known/openid-configuration';
-
     const appAuth = FlutterAppAuth();
 
     final result = await appAuth.authorize(

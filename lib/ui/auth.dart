@@ -1,4 +1,4 @@
-import 'package:auth_supabase/domain/auth_google.dart';
+import 'package:auth_supabase/data/auth_google.dart';
 import 'package:auth_supabase/ui/success.dart';
 import 'package:flutter/material.dart';
 
