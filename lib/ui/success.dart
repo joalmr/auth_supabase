@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SuccessView extends StatelessWidget {
   const SuccessView({super.key});
@@ -6,10 +7,22 @@ class SuccessView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.green[300],
-        width: double.maxFinite,
-        height: double.maxFinite,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Bienvenido",
+                style: TextStyle(fontSize: 22),
+              ),
+              Lottie.asset(
+                "assets/buscando.json",
+                height: 140,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
